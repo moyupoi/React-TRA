@@ -1,0 +1,54 @@
+@function getRem($pixel) {
+  @return $pixel/200*1rem;
+}
+@function getRemFour($top, $right, $bottom, $left) {
+  @return $top/200*1rem $right/200*1rem $bottom/200*1rem $left/200*1rem;
+}
+
+//省略号
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.forumListContent {
+  width: getRem(730);
+  padding: getRem(10) getRem(20);
+  background: #FFF;
+  border-radius: getRem(20);
+  overflow: hidden;
+  margin: getRem(10);
+  .title {
+    font-size: getRem(20);
+    border-bottom: 1px solid #ccc;
+    padding: getRem(20) 0;
+  }
+  .name {
+    font-size: getRem(40);
+    padding: getRem(20) 0;
+  }
+  aside {
+    font-size: getRem(14);
+    color: #ccc;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: getRem(10);
+  }
+  .topicContent {
+    padding: getRem(20) 0;
+    font-size: getRem(30);
+    line-height: getRem(45);
+    text-align: justify;
+    img {
+      width: 100%;
+      display: block;
+      overflow: hidden;
+      margin: getRem(20) 0;
+      border-radius: getRem(5);
+    }
+    span {
+      display: block;
+      overflow: hidden;
+    }
+  }
+}
