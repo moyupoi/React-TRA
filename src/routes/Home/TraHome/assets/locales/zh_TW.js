@@ -1,6 +1,7 @@
 module.exports = ({
   'merchantAccess': '商戶接入',
   'merchantBackstage': '商戶後臺',
+  'reservations': '預定房源',
   'bannerLabelLanguage': '英語',
   'bannerBtn': '白皮書',
   'bannerTitle': '旅行鏈',

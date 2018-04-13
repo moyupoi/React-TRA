@@ -55,6 +55,10 @@
             color: #fff;
           }
           .selectLanguage {
+            font-size: getRem(16);
+            line-height: getRem(24);
+            color: #fff;
+            cursor: pointer;
             ul {
               display: none;
               position: absolute;

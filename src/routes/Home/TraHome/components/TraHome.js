@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import { isEmpty, isUndefined } from 'lodash/fp'
 import {SectionsContainer, Section} from 'react-fullpage'
-import SublimeVideo from 'react-sublime-video'
+import { DefaultPlayer as Video } from 'react-html5video'
+import 'react-html5video/dist/styles.css'
 import intl from 'react-intl-universal'
 
 import s from '../assets/TraHome.scss'
@@ -31,14 +31,6 @@ class TraHome extends Component {
     this.loadLocales()
     const { fetchOkexesTicker } = this.props
     fetchOkexesTicker()
-  }
-
-  componentWillUnmount () {
-
-  }
-
-  componentWillReceiveProps (nextProps) {
-
   }
 
   handleClick () {
@@ -101,7 +93,6 @@ class TraHome extends Component {
   render () {
     const { traHome } = this.props
     const { okex } = traHome
-    console.log(traHome)
     let options = {
       activeClass:          'active', // the class that is appended to the sections links
       anchors:              ['a', 'b'], // the anchors for each sections
@@ -114,15 +105,6 @@ class TraHome extends Component {
       sectionPaddingTop:    '0', // the section top padding
       sectionPaddingBottom: '0', // the section bottom padding
       verticalAlign:        false // align the content of each section vertical
-    }
-    const Source = SublimeVideo.Source
-    const style = {
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      right: '0'
     }
     return (
       <div className={s.traHomeContent}>
@@ -139,7 +121,10 @@ class TraHome extends Component {
                     <a href='http://poiapi.travel.one/poi_login' target='_blank'>{intl.get('merchantBackstage')}</a>
                   </li>
                   <li>
-                    <a href='javascript:;' className={s.selectLanguage} onClick={() => this.handleClick()}>
+                    <a href='http://www.zhubaijia.com/' target='_blank'>{intl.get('reservations')}</a>
+                  </li>
+                  <li>
+                    <div className={s.selectLanguage} onClick={() => this.handleClick()}>
                       {intl.get('bannerLabelLanguage')}
                       <ul style={{ display: this.state.selectLanguage ? 'block' : 'none' }}>
                         <li>
@@ -152,7 +137,7 @@ class TraHome extends Component {
                           <a href='javascript:;' onClick={() => this.language('en-US')}>English</a>
                         </li>
                       </ul>
-                    </a>
+                    </div>
                   </li>
                   <li>
                     <a href={this.state.pdf} target='_blank'>{intl.get('bannerBtn')}</a>
@@ -165,15 +150,15 @@ class TraHome extends Component {
                 <span>{intl.get('bannerTitleAddress')}</span>
               </div>
               <div className={s.transactionOkex}>
-                <p className={s.details}>
+                <div className={s.details}>
                   <a href='javascript:;'>{intl.get('traHomeLogin')}</a>
                   <div>
                     <span>{intl.get('traHomeLoginCode')}: </span>
                     <span>TRA</span>
                   </div>
-                </p>
+                </div>
                 { !isUndefined(okex) && !isUndefined(okex.items) && !isUndefined(okex.items.tra_btc) &&
-                  <p className={s.traPrice}>
+                  <div className={s.traPrice}>
                     <div>
                       <span>TRA/BTC: </span>
                       <span>{okex.items.tra_btc.ticker.last}</span>
@@ -186,7 +171,7 @@ class TraHome extends Component {
                       <span>TRA/USDT: </span>
                       <span>{okex.items.tra_usdt.ticker.last}</span>
                     </div>
-                  </p>
+                  </div>
                 }
               </div>
               <div className={s.homeCooperation}>
@@ -212,7 +197,12 @@ class TraHome extends Component {
             <div className={s.back}></div>
           </Section>
           <Section>
-            <SublimeVideo loop className={s.reactPlayer} style={style} src={this.state.videoAd} poster={videoImg}/>
+            <Video loop muted
+              controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+              poster={videoImg} width='100%' height='100%'
+              onCanPlayThrough={() => {}}>
+              <source src={this.state.videoAd} type="video/webm" />
+            </Video>
           </Section>
         </SectionsContainer>
       </div>

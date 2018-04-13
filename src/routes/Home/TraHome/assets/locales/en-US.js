@@ -1,6 +1,7 @@
 module.exports = ({
   'merchantAccess': 'Access',
   'merchantBackstage': 'Backstage',
+  'reservations': 'Reservations',
   'bannerLabelLanguage': '中文',
   'bannerBtn': 'White Paper',
   'bannerTitle': 'Travel',
