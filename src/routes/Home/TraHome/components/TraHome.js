@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { isEmpty, isUndefined } from 'lodash/fp'
-import {SectionsContainer, Section} from 'react-fullpage'
+import { SectionsContainer, Section } from 'react-fullpage'
 import { DefaultPlayer as Video } from 'react-html5video'
 import 'react-html5video/dist/styles.css'
 import intl from 'react-intl-universal'
@@ -23,13 +23,14 @@ class TraHome extends Component {
       selectLanguage: false,
       initDone: false,
       pdf: '/tra/assets/pdf/Travel_White Paper_cn.pdf',
-      videoAd: 'http://www.travel.one/assets/video/video_cn.mp4'
+      videoAd: 'http://www.travel.one/tra/assets/video/video_cn.mp4'
     }
   }
 
   componentDidMount () {
+    const { fetchOkexesTicker, setTitle } = this.props
+    setTitle('Travel')
     this.loadLocales()
-    const { fetchOkexesTicker } = this.props
     fetchOkexesTicker()
   }
 
@@ -56,19 +57,19 @@ class TraHome extends Component {
       case 'zh-CN':
         this.setState({
           pdf: '/tra/assets/pdf/Travel_White Paper_cn.pdf',
-          videoAd: 'http://www.travel.one/assets/video/video_cn.mp4'
+          videoAd: 'http://www.travel.one/tra/assets/video/video_cn.mp4'
         })
         break
       case 'en-US':
         this.setState({
           pdf: '/tra/assets/pdf/Travel_White Paper_en.pdf',
-          videoAd: 'http://www.travel.one/assets/video/video_en.mp4'
+          videoAd: 'http://www.travel.one/tra/assets/video/video_en.mp4'
         })
         break
       case 'zh_TW':
         this.setState({
           pdf: '/tra/assets/pdf/Travel_White Paper_cn.pdf',
-          videoAd: 'http://www.travel.one/assets/video/video_cn.mp4'
+          videoAd: 'http://www.travel.one/tra/assets/video/video_cn.mp4'
         })
         break
       default:
