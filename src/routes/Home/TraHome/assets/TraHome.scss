@@ -1,0 +1,194 @@
+@function getRem($pixel) {
+  @return $pixel/200*1rem;
+}
+@function getRemFour($top, $right, $bottom, $left) {
+  @return $top/200*1rem $right/200*1rem $bottom/200*1rem $left/200*1rem;
+}
+
+//省略号
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reactPlayer {
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+.traHomeContent {
+  color: #fff;
+  article {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    z-index: 2;
+    padding-left: getRem(100);
+    padding-right: getRem(50);
+    nav {
+      width: 100%;
+      height: getRem(100);
+      padding: getRem(20) 0;
+      .logo {
+        width: getRem(100);
+      }
+      .navbarNav {
+        display: inline-block;
+        float: right;
+        li {
+          float: left;
+          padding: getRem(10);
+          position: relative;
+          a {
+            display: block;
+            font-size: getRem(16);
+            line-height: getRem(24);
+            color: #fff;
+          }
+          .selectLanguage {
+            ul {
+              display: none;
+              position: absolute;
+              top: getRem(40);
+              left: getRem(-25);
+              background: rgba(0, 0, 0, 0.5);
+              padding: getRem(20);
+              border-radius: getRem(5);
+              width: getRem(130);
+              li {
+                float: none;
+                padding: getRem(10) 0;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+    .traTitle {
+      margin-top: getRem(150);
+      h1 {
+        font-size: getRem(60);
+        color: #F5AD42;
+        font-weight: 400;
+      }
+      p {
+        font-size: getRem(36);
+      }
+      span {
+        font-size: getRem(26);
+
+      }
+    }
+    .transactionOkex {
+      position: absolute;
+      bottom: getRem(80);
+
+      .details {
+        a {
+          display: inline-block;
+          font-size: getRem(25);
+          color: #fff;
+        }
+        span {
+          display: inline-block;
+          font-size: getRem(25);
+          &:nth-of-type(2) {
+            color: #F5AD42;
+            margin-left: getRem(10);
+          }
+        }
+      }
+      .traPrice {
+        div {
+          display: inline-block;
+          span {
+            font-size: getRem(20);
+            &:nth-of-type(2) {
+              color: #F5AD42;
+              margin-right: getRem(10);
+            }
+          }
+        }
+      }
+    }
+    .homeCooperation {
+      position: absolute;
+      right: getRem(60);
+      bottom: getRem(80);
+      a {
+        display: inline-block;
+        padding-right: getRem(20);
+        img {
+          width: getRem(40);
+          height: getRem(40);
+          display: block;
+        }
+      }
+      p {
+        font-size: getRem(16);
+        margin-top: getRem(10);
+      }
+    }
+  }
+  .mongoliaLayer {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+  }
+  .back {
+    background: url('../assets/header.jpg') no-repeat;
+    background-position: left center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    z-index: 0;
+  }
+  @media only screen and (max-width: 480px) {
+    article {
+      padding-left: getRem(20);
+      padding-right: getRem(20);
+      .transactionOkex {
+        bottom: getRem(20);
+        .details {
+          span {
+            display: inline-block;
+          }
+        }
+        .traPrice {
+          div {
+            display: block;
+          }
+        }
+      }
+      .homeCooperation {
+        bottom: getRem(100);
+        right: 0;
+      }
+      .navbarNav {
+        .selectLanguage {
+          ul {
+            width: getRem(160) !important;
+          }
+        }
+      }
+    }
+  }
+}

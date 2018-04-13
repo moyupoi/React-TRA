@@ -9,7 +9,7 @@
  //  -webkit-overflow-scrolling: touch;
  // }
  body {
- 	width: 3.75rem;
+ 	width: 100%;
   -webkit-overflow-scrolling: touch;
   font-family: "PingFang SC";
   background: #f5f5f5;
@@ -70,7 +70,7 @@ a,a:hover,a:active, a:visited{
   width: auto;
   height: auto;
   visibility: hidden;
-  padding: 20px;
+  // padding: 20px;
   // background: url(../layouts/assets/BgContainer.png) no-repeat center bottom;
   background: #1E90FF;
   background-size: cover;
@@ -289,4 +289,20 @@ a,a:hover,a:active, a:visited{
 .ant-modal-wrap {
   width: 3.75rem;
   margin: 0 auto;
+}
+
+.Section {
+  position: relative;
+  border: 0;
+  section {
+    position: initial !important;
+    video {
+      object-fit: fill;
+    }
+  }
+}
+.Navigation {
+  a {
+    background: #fff !important;
+  }
 }

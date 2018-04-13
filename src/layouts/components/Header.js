@@ -12,7 +12,7 @@ class Header extends Component {
             <div className='return'></div>
           </div>
         }
-        <h3 className='header-title'>V3EX</h3>
+        <h3 className='header-title'></h3>
         <div className='sidebar-toggle-wrap' onClick={faToggleSidebar}>
           <label className='sidebar-toggle'></label>
         </div>

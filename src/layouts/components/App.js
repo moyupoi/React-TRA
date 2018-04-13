@@ -88,14 +88,15 @@ class App extends Component {
         <Sidebar eventToggleSidebar={this.eventToggleSidebar} />
         <div className='sidebar-mask' onClick={this.eventCloseSidebar}></div>
         <div className='wrap' id='wrap' onClick={this.eventCloseSidebar}>
-          <Header faToggleSidebar={this.eventToggleSidebar} faGoBack={this.goBack} />
+          { location.pathname.indexOf('/') < 0 &&
+            <Header faToggleSidebar={this.eventToggleSidebar} faGoBack={this.goBack} />
+          }
           <div className='container content'>
             {this.props.children}
           </div>
-          { location.pathname.indexOf('/users/sign_in') < 0 &&
+          { location.pathname.indexOf('/') < 0 &&
             <Footer/>
           }
-
         </div>
 
       </div>

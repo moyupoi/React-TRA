@@ -1,9 +1,7 @@
 import { App } from 'layouts'
 // 论坛
-import ForumHome from './Home/ForumHome'
-import ForumList from './Home/ForumList'
-import Signin from './Signin'
-import Space from './Space'
+import TraHome from './Home/TraHome'
+
 // 404
 import NotFound from './NotFound'
 
@@ -11,11 +9,8 @@ export const createRoutes = (store) => ([
   {
     path: '/',
     component: App,
-    indexRoute: ForumHome(store),
+    indexRoute: TraHome(store),
     childRoutes: [
-      ForumList(store),
-      Signin(store),
-      Space(store)
     ]
   },
   {

@@ -18,12 +18,11 @@ export function setTitle (value = '') {
 }
 
 export function wechat (url) {
-  debugger
   return {
     [CALL_API]: {
       endpoint: config.api_root_v1 + '/wx?url=' + url,
       method: 'GET',
-      headers: config.headers,
+      // headers: config.headers,
       types: [
         WECHAT_REQUEST,
         {
@@ -60,7 +59,7 @@ const ACTION_HANDLERS = {
 }
 
 // Reducers
-const initialState = { title: { name: '住百家' }, wechat: { isFetching: false, info: '' } }
+const initialState = { title: { name: '' }, wechat: { isFetching: false, info: '' } }
 export default function commonReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
   return handler ? handler(state, action) : state

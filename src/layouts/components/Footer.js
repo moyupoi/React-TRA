@@ -16,9 +16,9 @@ class Footer extends Component {
     return (
       <div className='footer'>
         <h3 className='footer-title'>
-          咨询热线：6021234
+
         </h3>
-        <p className='footer-info'>Copyright © 2018</p>
+        <p className='footer-info'></p>
       </div>
     )
   }

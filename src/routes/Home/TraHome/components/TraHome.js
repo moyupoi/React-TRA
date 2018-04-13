@@ -1,0 +1,227 @@
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import { isEmpty, isUndefined } from 'lodash/fp'
+import {SectionsContainer, Section} from 'react-fullpage'
+import SublimeVideo from 'react-sublime-video'
+import intl from 'react-intl-universal'
+
+import s from '../assets/TraHome.scss'
+import zhCN from '../assets/locales/zh-CN'
+import enUS from '../assets/locales/en-US'
+import logo from '../assets/logo.png'
+import contactus_t1 from '../assets/contactus_t1.png'
+import contactus_t2 from '../assets/contactus_t2.png'
+import contactus_t3 from '../assets/contactus_t3.png'
+import contactus_t4 from '../assets/contactus_t4.png'
+import contactus_t5 from '../assets/contactus_t5.png'
+import videoImg from '../assets/videoImg.png'
+
+class TraHome extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      selectLanguage: false,
+      initDone: false,
+      pdf: '/tra/assets/pdf/Travel_White Paper_cn.pdf',
+      videoAd: 'http://www.travel.one/assets/video/video_cn.mp4'
+    }
+  }
+
+  componentDidMount () {
+    this.loadLocales()
+    const { fetchOkexesTicker } = this.props
+    fetchOkexesTicker()
+  }
+
+  componentWillUnmount () {
+
+  }
+
+  componentWillReceiveProps (nextProps) {
+
+  }
+
+  handleClick () {
+    this.setState({
+      selectLanguage: !this.state.selectLanguage
+    })
+  }
+
+  language (land) {
+    const locales = {
+      'zh-CN': require('../assets/locales/zh-CN.js'),
+      'zh_TW': require('../assets/locales/zh_TW.js'),
+      'en-US': require('../assets/locales/en-US.js')
+    }
+    intl.init({
+      currentLocale: land,
+      locales,
+    })
+    .then(() => {
+      this.setState({initDone: true})
+    })
+    switch (land) {
+      case 'zh-CN':
+        this.setState({
+          pdf: '/tra/assets/pdf/Travel_White Paper_cn.pdf',
+          videoAd: 'http://www.travel.one/assets/video/video_cn.mp4'
+        })
+        break
+      case 'en-US':
+        this.setState({
+          pdf: '/tra/assets/pdf/Travel_White Paper_en.pdf',
+          videoAd: 'http://www.travel.one/assets/video/video_en.mp4'
+        })
+        break
+      case 'zh_TW':
+        this.setState({
+          pdf: '/tra/assets/pdf/Travel_White Paper_cn.pdf',
+          videoAd: 'http://www.travel.one/assets/video/video_cn.mp4'
+        })
+        break
+      default:
+    }
+  }
+
+  loadLocales () {
+    const locales = {
+      'zh-CN': require('../assets/locales/zh-CN.js'),
+      'zh_TW': require('../assets/locales/zh_TW.js'),
+      'en-US': require('../assets/locales/en-US.js')
+    }
+    intl.init({
+      currentLocale: navigator.language,
+      locales,
+    })
+    .then(() => {
+      this.setState({initDone: true})
+    })
+  }
+
+  render () {
+    const { traHome } = this.props
+    const { okex } = traHome
+    console.log(traHome)
+    let options = {
+      activeClass:          'active', // the class that is appended to the sections links
+      anchors:              ['a', 'b'], // the anchors for each sections
+      arrowNavigation:      true, // use arrow keys
+      className:            'SectionContainer', // the class name for the section container
+      delay:                800, // the scroll animation speed
+      navigation:           true, // use dots navigatio
+      scrollBar:            false, // use the browser default scrollbar
+      sectionClassName:     'Section', // the section class name
+      sectionPaddingTop:    '0', // the section top padding
+      sectionPaddingBottom: '0', // the section bottom padding
+      verticalAlign:        false // align the content of each section vertical
+    }
+    const Source = SublimeVideo.Source
+    const style = {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      right: '0'
+    }
+    return (
+      <div className={s.traHomeContent}>
+        <SectionsContainer {...options}>
+          <Section>
+            <article>
+              <nav>
+                <img src={logo} className={s.logo}/>
+                <ul className={s.navbarNav}>
+                  <li>
+                    <a href='/tra/traApi/index.html' target='_blank'>{intl.get('merchantAccess')}</a>
+                  </li>
+                  <li>
+                    <a href='http://poiapi.travel.one/poi_login' target='_blank'>{intl.get('merchantBackstage')}</a>
+                  </li>
+                  <li>
+                    <a href='javascript:;' className={s.selectLanguage} onClick={() => this.handleClick()}>
+                      {intl.get('bannerLabelLanguage')}
+                      <ul style={{ display: this.state.selectLanguage ? 'block' : 'none' }}>
+                        <li>
+                          <a href='javascript:;' onClick={() => this.language('zh-CN')}>中文</a>
+                        </li>
+                        <li>
+                          <a href='javascript:;' onClick={() => this.language('zh_TW')}>翻译中文</a>
+                        </li>
+                        <li>
+                          <a href='javascript:;' onClick={() => this.language('en-US')}>English</a>
+                        </li>
+                      </ul>
+                    </a>
+                  </li>
+                  <li>
+                    <a href={this.state.pdf} target='_blank'>{intl.get('bannerBtn')}</a>
+                  </li>
+                </ul>
+              </nav>
+              <div className={s.traTitle}>
+                <h1>{intl.get('bannerTitle')}</h1>
+                <p>{intl.get('bannerTitleDescribe')}</p>
+                <span>{intl.get('bannerTitleAddress')}</span>
+              </div>
+              <div className={s.transactionOkex}>
+                <p className={s.details}>
+                  <a href='javascript:;'>{intl.get('traHomeLogin')}</a>
+                  <div>
+                    <span>{intl.get('traHomeLoginCode')}: </span>
+                    <span>TRA</span>
+                  </div>
+                </p>
+                { !isUndefined(okex) && !isUndefined(okex.items) && !isUndefined(okex.items.tra_btc) &&
+                  <p className={s.traPrice}>
+                    <div>
+                      <span>TRA/BTC: </span>
+                      <span>{okex.items.tra_btc.ticker.last}</span>
+                    </div>
+                    <div>
+                      <span>TRA/ETH: </span>
+                      <span>{okex.items.tra_eth.ticker.last}</span>
+                    </div>
+                    <div>
+                      <span>TRA/USDT: </span>
+                      <span>{okex.items.tra_usdt.ticker.last}</span>
+                    </div>
+                  </p>
+                }
+              </div>
+              <div className={s.homeCooperation}>
+                <a href='https://www.instagram.com/thetoptravel' target='_blank'>
+                  <img src={contactus_t1} />
+                </a>
+                <a href='https://twitter.com/thetoptravel' target='_blank'>
+                  <img src={contactus_t2} />
+                </a>
+                <a href='javascript:;' target='_blank' id='cooperationCode'>
+                  <img src={contactus_t3} />
+                </a>
+                <a href='https://t.me/Travelcoin' target='_blank'>
+                  <img src={contactus_t4} />
+                </a>
+                <a href='https://github.com/TravelFoundation/' target='_blank'>
+                  <img src={contactus_t5} />
+                </a>
+                <p data-name='businessCooperation'>{intl.get('businessCooperation')}</p>
+              </div>
+            </article>
+            <div className={s.mongoliaLayer}></div>
+            <div className={s.back}></div>
+          </Section>
+          <Section>
+            <SublimeVideo loop className={s.reactPlayer} style={style} src={this.state.videoAd} poster={videoImg}/>
+          </Section>
+        </SectionsContainer>
+      </div>
+    )
+  }
+}
+
+TraHome.propTypes = {
+
+}
+
+export default TraHome
