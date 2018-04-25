@@ -219,7 +219,7 @@ class TraHome extends Component {
               <h1>预定全球美宿</h1>
               <main>
                 { !isUndefined(cityData) && cityData.map((item, i) =>
-                  <a href={ '/city_offers/Australia' } target='_blank' onMouseOver={() => this.hoverOffer(i, item.img)} key={i}>
+                  <a href={ '/city_offers/' + item.cityNameEn } target='_blank' onMouseOver={() => this.hoverOffer(i, item.img)} key={i}>
                     <img src={require(`../assets/${item.img}.jpg`)} />
                     <div className={s.make}></div>
                     <div className={s.name}>
