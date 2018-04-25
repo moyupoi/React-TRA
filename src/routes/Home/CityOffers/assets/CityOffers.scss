@@ -1,0 +1,167 @@
+@function getRem($pixel) {
+  @return $pixel/200*1rem;
+}
+@function getRemFour($top, $right, $bottom, $left) {
+  @return $top/200*1rem $right/200*1rem $bottom/200*1rem $left/200*1rem;
+}
+
+.cityOffersContent {
+  color: #fff;
+  .bannerBack {
+    position: relative;
+    // height: getRem(500);
+    width: 100%;
+    z-index: 1;
+  }
+  .cityIntroduction {
+    margin: 0 auto;
+    width: getRem(1040);
+    height: getRem(242);
+    position: relative;
+    .introduction {
+      width: getRem(1060);
+      padding: getRem(20);
+      position: absolute;
+      top: getRem(-70);
+      z-index: 1;
+      background: #fff;
+      h1 {
+        font-size: getRem(40);
+        font-weight: 600;
+        margin-bottom: getRem(20);
+      }
+      h6 {
+        font-size: getRem(18);
+        color: #3A3A48;
+        position: relative;
+        margin-bottom: getRem(10);
+        &:nth-of-type(1) {
+          &:before {
+            content: '';
+            width: 17px;
+            height: 17px;
+            float: left;
+            background: url('http://sassets1.zhubaijia.com/assets/web/land/art_board-1a20b440291b474d2feac376cac60be08e4d1e0fc6cb5a359082f595eb8301d0.png') 0px 0px no-repeat;
+            background-position: -122px -9px;
+            margin-right: 5px;
+            margin-top: 2px;
+          }
+        }
+        &:nth-of-type(2) {
+          &:before {
+            content: '';
+            width: 17px;
+            height: 19px;
+            float: left;
+            background: url('http://sassets1.zhubaijia.com/assets/web/land/art_board-1a20b440291b474d2feac376cac60be08e4d1e0fc6cb5a359082f595eb8301d0.png') 0px 0px no-repeat;
+            background-position: -124px -35px;
+            margin-right: 5px;
+            margin-top: 2px;
+          }
+        }
+      }
+      p {
+        margin-bottom: getRem(10);
+        font-size: getRem(16);
+        color: #3A3A48;
+      }
+      .traPrice {
+        div {
+          display: inline-block;
+          margin-right: getRem(20);
+          span {
+            font-size: getRem(12);
+            color: #3A3A48;
+            display: inline-block;
+            &:nth-of-type(1) {
+              border-radius: getRem(5);
+              padding: getRem(2) getRem(5);
+            }
+            &:nth-of-type(2) {
+              font-size: getRem(16);
+              margin-left: getRem(10);
+            }
+          }
+          &:nth-of-type(1) span:nth-of-type(1) {
+            color: #3F6722;
+            border: 1px solid #3F6722;
+            background: #F3FBED;
+
+          }
+          &:nth-of-type(2) span:nth-of-type(1) {
+            color: #B77423;
+            border: 1px solid #B77423;
+            background: #FFF5DE;
+          }
+          &:nth-of-type(3) span:nth-of-type(1) {
+            color: #A164CC;
+            border: 1px solid #A164CC;
+            background: #F8EEFD;
+          }
+        }
+      }
+    }
+  }
+  .offer {
+    width: getRem(1400);
+    margin: getRem(50) auto 0 auto;
+    h2 {
+      font-size: getRem(32);
+      font-weight: 600;
+      text-align: center;
+    }
+    .city {
+      section {
+        background: #fff;
+        margin: getRem(20) 0 getRem(40);
+        padding: getRem(10) getRem(20);
+        a {
+          width: getRem(320);
+          height: getRem(326);
+          display: inline-block;
+          margin: getRem(20) getRem(10);
+          position: relative;
+          z-index: 0;
+          // transition: all .3s;
+          border: 1px solid #F2F2F4;
+          position: relative;
+          img {
+            width: getRem(320);
+            height: getRem(200);
+          }
+          h4 {
+            position: absolute;
+            top: getRem(150);
+            font-size: getRem(18);
+            font-weight: 400;
+            color: #fff;
+            padding: getRem(5) getRem(12);
+            background: rgba(9,9,26,0.8);
+          }
+          h6 {
+            font-size: getRem(18);
+            margin: getRemFour(6, 0, 10, 12);
+            height: getRem(32);
+            overflow: hidden;
+          }
+          span {
+            display: block;
+            font-size: getRem(12);
+            color: #6B6B76;
+            margin: getRemFour(0, 0, 10, 12);
+          }
+          p {
+            background: #FFA500;
+            color: #fff;
+            width: getRem(300);
+            height: getRem(30);
+            line-height: getRem(30);
+            margin: 0 auto;
+            border-radius: getRem(2);
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

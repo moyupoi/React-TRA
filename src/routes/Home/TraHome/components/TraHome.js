@@ -4,6 +4,7 @@ import { SectionsContainer, Section } from 'react-fullpage'
 import { DefaultPlayer as Video } from 'react-html5video'
 import 'react-html5video/dist/styles.css'
 import intl from 'react-intl-universal'
+import { Carousel } from 'antd'
 
 import s from '../assets/TraHome.scss'
 import zhCN from '../assets/locales/zh-CN'
@@ -17,13 +18,18 @@ import contactus_t5 from '../assets/contactus_t5.png'
 import videoImg from '../assets/videoImg.png'
 
 class TraHome extends Component {
-  constructor (props) {
-    super(props)
+  constructor (props, context) {
+    super(props, context)
     this.state = {
+      scrollBar: false,
       selectLanguage: false,
       initDone: false,
       pdf: '/tra/assets/pdf/Travel_White Paper_cn.pdf',
-      videoAd: 'http://www.travel.one/tra/assets/video/video_cn.mp4'
+      videoAd: 'http://www.travel.one/tra/assets/video/video_cn.mp4',
+      left: 0,
+      right: 0,
+      mouse: 0,
+      backgroundImage: 'http://simg1.zhubaijia.com/1469674082/PEeRJxzqk6q9mpTpgqo1NvekUUNcUPDu.jpg'
     }
   }
 
@@ -32,6 +38,9 @@ class TraHome extends Component {
     setTitle('Travel')
     this.loadLocales()
     fetchOkexesTicker()
+    if(location.hash !== '#a' && location.hash !== '') {
+      // window.location.href = '/'
+    }
   }
 
   handleClick () {
@@ -90,13 +99,18 @@ class TraHome extends Component {
       this.setState({initDone: true})
     })
   }
+  hoverOffer (i, type) {
+    this.setState({
+      backgroundImage: require(`../assets/${type}.jpg`)
+    })
+  }
 
   render () {
-    const { traHome } = this.props
+    const { traHome, cityData } = this.props
     const { okex } = traHome
     let options = {
       activeClass:          'active', // the class that is appended to the sections links
-      anchors:              ['a', 'b'], // the anchors for each sections
+      anchors:              ['a', 'b', 'c'], // the anchors for each sections
       arrowNavigation:      true, // use arrow keys
       className:            'SectionContainer', // the class name for the section container
       delay:                800, // the scroll animation speed
@@ -105,7 +119,8 @@ class TraHome extends Component {
       sectionClassName:     'Section', // the section class name
       sectionPaddingTop:    '0', // the section top padding
       sectionPaddingBottom: '0', // the section bottom padding
-      verticalAlign:        false // align the content of each section vertical
+      verticalAlign:        false, // align the content of each section vertical
+      resetSliders:         true
     }
     return (
       <div className={s.traHomeContent}>
@@ -198,6 +213,24 @@ class TraHome extends Component {
             <div className={s.back}></div>
           </Section>
           <Section>
+            <div className={s.offerBack} style={{ backgroundImage: `url(${this.state.backgroundImage})` }}></div>
+            <div className={s.offerBackMk}></div>
+            <div className={s.offerList}>
+              <h1>预定全球美宿</h1>
+              <main>
+                { !isUndefined(cityData) && cityData.map((item, i) =>
+                  <a href={ '/city_offers/Australia' } target='_blank' onMouseOver={() => this.hoverOffer(i, item.img)} key={i}>
+                    <img src={require(`../assets/${item.img}.jpg`)} />
+                    <div className={s.make}></div>
+                    <div className={s.name}>
+                      <p>{item.cityName}</p>
+                    </div>
+                  </a>
+                )}
+              </main>
+            </div>
+          </Section>
+          <Section>
             <Video loop muted
               controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
               poster={videoImg} width='100%' height='100%'
@@ -205,6 +238,7 @@ class TraHome extends Component {
               <source src={this.state.videoAd} type="video/webm" />
             </Video>
           </Section>
+
         </SectionsContainer>
       </div>
     )
@@ -213,6 +247,10 @@ class TraHome extends Component {
 
 TraHome.propTypes = {
 
+}
+
+TraHome.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default TraHome

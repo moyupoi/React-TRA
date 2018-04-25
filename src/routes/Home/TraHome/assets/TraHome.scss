@@ -4,6 +4,9 @@
 @function getRemFour($top, $right, $bottom, $left) {
   @return $top/200*1rem $right/200*1rem $bottom/200*1rem $left/200*1rem;
 }
+@keyframes example {
+  margin-left: getRem(200);
+}
 
 //省略号
 .ellipsis {
@@ -23,8 +26,8 @@
   bottom: 0;
 }
 
-
 .traHomeContent {
+  background: #fff;
   color: #fff;
   article {
     width: 100%;
@@ -194,5 +197,130 @@
         }
       }
     }
+  }
+  .offerList {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    h1 {
+      font-size: getRem(36);
+      text-align: center;
+      margin-top: getRem(100);
+      margin-bottom: getRem(50);
+    }
+    nav {
+
+    }
+    main {
+      width: getRem(975);
+      display: inline-block;
+      margin: 0 auto;
+      text-align: center;
+      a {
+        width: getRem(225);
+        height: getRem(150);
+        display: block;
+        border-radius: getRem(4);
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        float: left;
+        vertical-align: text-top;
+        img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          float: left;
+          transition: all 6s;
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+        &:nth-of-type(1), &:nth-of-type(8) {
+          width: getRem(472);
+          height: getRem(317);
+        }
+        &:nth-of-type(6), &:nth-of-type(7) {
+          width: getRem(225);
+          height: getRem(317);
+          margin-top: getRem(25);
+          margin-right: getRem(25);
+        }
+        &:nth-of-type(2), &:nth-of-type(4) {
+          margin-right: getRem(25);
+          margin-left: getRem(25);
+        }
+        &:nth-of-type(2), &:nth-of-type(3){
+          margin-bottom: getRem(17);
+        }
+        &:nth-of-type(6) {
+          clear: both;
+        }
+        &:nth-of-type(8) {
+          margin-top: getRem(20);
+        }
+        .make {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 1;
+          background: rgba(0,0,0,.2);
+          pointer-events: none;
+        }
+        .name {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 2;
+          pointer-events: none;
+          p {
+            text-align: center;
+            font-size: getRem(20);
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-height: 800px) {
+    .offerList {
+      h1 {
+        margin-top: getRem(20);
+        margin-bottom: getRem(10);
+      }
+    }
+  }
+  .offerBack {
+    position: absolute;
+    top: 0;
+    background: url('http://simg1.zhubaijia.com/1469588027/kuZXfGDwGA7aUnbABUrwnwT3yu9oeKgN.jpg')  no-repeat;
+    background-position: left center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    transition: all ease-in .9s;
+  }
+  .offerBackMk {
+    background: rgba(255, 255, 255,0.8);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 }

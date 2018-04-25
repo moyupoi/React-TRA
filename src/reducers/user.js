@@ -49,10 +49,6 @@ export const REG_PHONE_REQUEST = 'REG_PHONE_REQUEST'
 export const REG_PHONE_SUCCESS = 'REG_PHONE_SUCCESS'
 export const REG_PHONE_FAILURE = 'REG_PHONE_FAILURE'
 
-export const GETME_REQUEST = 'GETME_REQUEST'
-export const GETME_SUCCESS = 'GETME_SUCCESS'
-export const GETME_FAILURE = 'GETME_FAILURE'
-
 export const TOKEN_NOEXIST = 'TOKEN_NOEXIST'
 export const TOKEN_EXIST = 'TOKEN_EXIST'
 
@@ -295,35 +291,6 @@ export function regEmail (email, password, name, channel, source) {
   }
 }
 
-// 添加微信openId验证
-export function getMe () {
-  const token = cookie.load('token') || window.RCD.access_token
-  const openId = cookie.load('wx_open_id')
-  if (token || openId) {
-    return {
-      [CALL_API]: {
-        endpoint: config.api_root_v1 + '/profile',
-        method: 'GET',
-        headers: extend(config.headers, { 'Authorization': `Bearer ${token}` }),
-        types: [
-          GETME_REQUEST,
-          {
-            type: GETME_SUCCESS,
-            payload: (action, state, res) => {
-              return res.json()
-            }
-          },
-          GETME_FAILURE
-        ]
-      }
-    }
-  } else {
-    return {
-      type: TOKEN_NOEXIST
-    }
-  }
-}
-
 export function logout () {
   return {
     type: CLEAN_COOKIE
@@ -419,7 +386,6 @@ export const actions = {
   dynamicAuth,
   regEmail,
   regPhone,
-  getMe,
   logout,
   signed,
   updateCode,
@@ -504,15 +470,6 @@ const ACTION_HANDLERS = {
   },
   [REG_PHONE_FAILURE]: (state, action) => {
     return ({ ...state, error: action.payload, cookie: false, signed: false })
-  },
-  [GETME_REQUEST]: (state, action) => {
-    return ({ ...state, error: {} })
-  },
-  [GETME_SUCCESS]: (state, action) => {
-    return ({ ...state, error: {}, cookie: true, signed: true, info: action.payload })
-  },
-  [GETME_FAILURE]: (state, action) => {
-    return ({ ...state, error: {}, cookie: false, signed: false })
   },
   [TOKEN_NOEXIST]: (state, action) => {
     return ({ ...state, error: {}, cookie: false, signed: false })
