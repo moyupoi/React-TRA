@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { isEmpty, isUndefined } from 'lodash/fp'
+import addEventListener from 'rc-util/lib/Dom/addEventListener'
+import Scroll from 'react-scroll'
+var scroll = Scroll.animateScroll
 
 import s from '../assets/CityOffers.scss'
 import logo from '../assets/logo.png'
@@ -8,15 +11,37 @@ import traBanner from '../assets/traBanner.jpg'
 class CityOffers extends Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-
-    }
+    this.state = {}
   }
 
   componentDidMount () {
-    const { fetchOkexesTicker, setTitle } = this.props
+    const { fetchOkexesTicker, setTitle, params } = this.props
     setTitle('Travel')
     fetchOkexesTicker()
+    switch (params.id) {
+      case 'Italy':
+        scroll.scrollTo(1150)
+        break
+      case 'France':
+        scroll.scrollTo(1580)
+        break
+      case 'Spain':
+        scroll.scrollTo(1990)
+        break
+      case 'Britain':
+        scroll.scrollTo(2400)
+        break
+      case 'Australia':
+        scroll.scrollTo(2850)
+        break
+      case 'Thailand':
+        scroll.scrollTo(3260)
+        break
+      case 'Japan':
+        scroll.scrollTo(4520)
+        break
+      default:
+    }
   }
 
   render () {

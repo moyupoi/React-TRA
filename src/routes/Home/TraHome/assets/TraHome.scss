@@ -206,7 +206,7 @@
     h1 {
       font-size: getRem(36);
       text-align: center;
-      margin-top: getRem(100);
+      margin-top: getRem(140);
       margin-bottom: getRem(50);
     }
     nav {
@@ -242,7 +242,7 @@
           height: getRem(317);
         }
         &:nth-of-type(6), &:nth-of-type(7) {
-          width: getRem(225);
+          width: getRem(224);
           height: getRem(317);
           margin-top: getRem(25);
           margin-right: getRem(25);
@@ -256,9 +256,10 @@
         }
         &:nth-of-type(6) {
           clear: both;
+          // margin-right: getRem(23);
         }
         &:nth-of-type(8) {
-          margin-top: getRem(20);
+          margin-top: getRem(25);
         }
         .make {
           width: 100%;
@@ -280,7 +281,7 @@
           left: 0;
           right: 0;
           bottom: 0;
-          z-index: 2;
+          z-index: 10;
           pointer-events: none;
           p {
             text-align: center;
