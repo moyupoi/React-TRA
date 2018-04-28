@@ -473,7 +473,7 @@ class CityOffers extends Component {
                     <h4 className={s.price}>￥{offers.price}</h4>
                     <h6>{offers.name}</h6>
                     <span>{offers.city}</span>
-                    <p>立即预定</p>
+                    <p>立即预订</p>
                   </a>
                 )}
               </section>

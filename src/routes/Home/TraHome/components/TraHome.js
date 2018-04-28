@@ -216,7 +216,7 @@ class TraHome extends Component {
             <div className={s.offerBack} style={{ backgroundImage: `url(${this.state.backgroundImage})` }}></div>
             <div className={s.offerBackMk}></div>
             <div className={s.offerList}>
-              <h1>预定全球美宿</h1>
+              <h1>预订全球美宿</h1>
               <main>
                 { !isUndefined(cityData) && cityData.map((item, i) =>
                   <a href={ '/city_offers/' + item.cityNameEn } target='_blank' onMouseOver={() => this.hoverOffer(i, item.img)} key={i}>
