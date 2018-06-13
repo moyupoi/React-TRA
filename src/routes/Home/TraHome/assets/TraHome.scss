@@ -168,6 +168,53 @@
     top: 0px;
     z-index: 0;
   }
+  .notice {
+    position: fixed;
+    width: 100%;
+    margin: 15% auto;
+    top: 0;
+    z-index: 1;
+    .contentText {
+      width: getRem(600);
+      height: getRem(550);
+      background: #fff;
+      margin: 0 auto;
+      position: relative;
+      padding: getRem(20) getRem(50);
+      color: #333333;
+      img {
+        width: getRem(50);
+        height: getRem(50);
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;
+        cursor: pointer;
+      }
+      h1 {
+        margin-top: getRem(20);
+        margin-bottom: getRem(20);
+        font-size: getRem(20);
+        text-align: center;
+      }
+      p {
+        margin-top: getRem(20);
+        font-size: getRem(16);
+        text-align: center;
+        line-height: getRem(30);
+        border: 0;
+        width: 100%;
+        text-indent: 2em;
+        text-align: justify;
+      }
+      span {
+        margin-top: getRem(20);
+        display: block;
+        text-align: right;
+      }
+    }
+  }
   @media only screen and (max-width: 480px) {
     article {
       padding-left: getRem(20);

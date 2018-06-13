@@ -16,6 +16,7 @@ import contactus_t3 from '../assets/contactus_t3.png'
 import contactus_t4 from '../assets/contactus_t4.png'
 import contactus_t5 from '../assets/contactus_t5.png'
 import videoImg from '../assets/videoImg.png'
+import close from '../assets/close.png'
 
 class TraHome extends Component {
   constructor (props, context) {
@@ -29,7 +30,8 @@ class TraHome extends Component {
       left: 0,
       right: 0,
       mouse: 0,
-      backgroundImage: 'http://simg1.zhubaijia.com/1469674082/PEeRJxzqk6q9mpTpgqo1NvekUUNcUPDu.jpg'
+      backgroundImage: 'http://simg1.zhubaijia.com/1469674082/PEeRJxzqk6q9mpTpgqo1NvekUUNcUPDu.jpg',
+      notice: true
     }
   }
 
@@ -105,12 +107,18 @@ class TraHome extends Component {
     })
   }
 
+  notice () {
+    this.setState({
+      notice: false
+    })
+  }
+
   render () {
     const { traHome, cityData } = this.props
     const { okex } = traHome
     let options = {
       activeClass:          'active', // the class that is appended to the sections links
-      anchors:              ['a', 'b', 'c'], // the anchors for each sections
+      anchors:              ['a', 'b'], // the anchors for each sections
       arrowNavigation:      true, // use arrow keys
       className:            'SectionContainer', // the class name for the section container
       delay:                800, // the scroll animation speed
@@ -124,6 +132,24 @@ class TraHome extends Component {
     }
     return (
       <div className={s.traHomeContent}>
+        { !this.state.notice &&
+          <div className={s.noticeNarrow}>
+
+          </div>
+        }
+        { this.state.notice &&
+          <div className={s.notice}>
+            <div className={s.contentText}>
+              <h1>OKEx关于NAS主网切换成功并开放充提的公告</h1>
+              <p>鉴于近期个别互联网自媒体披露关于“深圳市住百家发展股份有限公司”（以下简称“住百家公司”）相关文章，其中涉及Travel平台及平台数字代币（TRA）的部分内容对Travel平台造成了不良影响。Travel平台特此声明如下：</p>
+              <p>“住百家公司”仅为Travel平台众多业务合作机构之一，并非相关文章所述“Travel平台为‘住百家公司’创立”。与Travel平台业务合作机构还包括Zat Go承云、云雀金服、维纳斯以及中国台湾台北、台南等地区民宿协会等。鉴于业务合作机构实际情况，Travel平台将谨慎评估与“住百家公司”的业务合作事宜。</p>
+              <p>对于网络中相关不实报道，Travel平台将保留追究法律责任的权利。</p>
+              <span>Travel</span>
+              <span>2018年6月13日</span>
+              <img src={close} onClick={() => this.notice()}></img>
+            </div>
+          </div>
+        }
         <SectionsContainer {...options}>
           <Section>
             <article>
@@ -135,9 +161,6 @@ class TraHome extends Component {
                   </li>
                   <li>
                     <a href='http://poiapi.travel.one/poi_login' target='_blank'>{intl.get('merchantBackstage')}</a>
-                  </li>
-                  <li>
-                    <a href='http://www.zhubaijia.com/' target='_blank'>{intl.get('reservations')}</a>
                   </li>
                   <li>
                     <div className={s.selectLanguage} onClick={() => this.handleClick()}>
@@ -212,24 +235,26 @@ class TraHome extends Component {
             <div className={s.mongoliaLayer}></div>
             <div className={s.back}></div>
           </Section>
-          <Section>
-            <div className={s.offerBack} style={{ backgroundImage: `url(${this.state.backgroundImage})` }}></div>
-            <div className={s.offerBackMk}></div>
-            <div className={s.offerList}>
-              <h1>预订全球美宿</h1>
-              <main>
-                { !isUndefined(cityData) && cityData.map((item, i) =>
-                  <a href={ '/city_offers/' + item.cityNameEn } target='_blank' onMouseOver={() => this.hoverOffer(i, item.img)} key={i}>
-                    <img src={require(`../assets/${item.img}.jpg`)} />
-                    <div className={s.make}></div>
-                    <div className={s.name}>
-                      <p>{item.cityName}</p>
-                    </div>
-                  </a>
-                )}
-              </main>
-            </div>
-          </Section>
+          { 1 == 2 &&
+            <Section>
+              <div className={s.offerBack} style={{ backgroundImage: `url(${this.state.backgroundImage})` }}></div>
+              <div className={s.offerBackMk}></div>
+              <div className={s.offerList}>
+                <h1>预订全球美宿</h1>
+                <main>
+                  { !isUndefined(cityData) && cityData.map((item, i) =>
+                    <a href={ '/city_offers/' + item.cityNameEn } target='_blank' onMouseOver={() => this.hoverOffer(i, item.img)} key={i}>
+                      <img src={require(`../assets/${item.img}.jpg`)} />
+                      <div className={s.make}></div>
+                      <div className={s.name}>
+                        <p>{item.cityName}</p>
+                      </div>
+                    </a>
+                  )}
+                </main>
+              </div>
+            </Section>
+          }
           <Section>
             <Video loop muted
               controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
