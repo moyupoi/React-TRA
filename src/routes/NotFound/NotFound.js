@@ -12,7 +12,6 @@ class NotFound extends Component {
         <img className={s.notFoundImg} src={error} />
         <em className={s.statusCode}>404</em>
         <p className={s.notFoundExplain}>哎呦，这扇门打不开了...</p>
-        <a href='/' className={s.notFoundHome}>查看首页</a>
       </div>
     )
   }
