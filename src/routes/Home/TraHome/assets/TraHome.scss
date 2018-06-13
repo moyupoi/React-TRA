@@ -216,6 +216,11 @@
     }
   }
   @media only screen and (max-width: 480px) {
+    .notice {
+      .contentText {
+        height: getRem(750);
+      }
+    }
     article {
       padding-left: getRem(20);
       padding-right: getRem(20);
