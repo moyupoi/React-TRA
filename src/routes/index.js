@@ -3,6 +3,7 @@ import { App } from 'layouts'
 import TraHome from './Home/TraHome'
 import CityOffers from './Home/CityOffers'
 import Notice from './Notice'
+import Progress from './Progress'
 
 // 404
 import NotFound from './NotFound'
@@ -14,7 +15,8 @@ export const createRoutes = (store) => ([
     indexRoute: TraHome(store),
     childRoutes: [
       CityOffers(store),
-      Notice(store)
+      Notice(store),
+      Progress(store)
     ]
   },
   {

@@ -32,7 +32,8 @@ class TraHome extends Component {
       right: 0,
       mouse: 0,
       backgroundImage: 'http://simg1.zhubaijia.com/1469674082/PEeRJxzqk6q9mpTpgqo1NvekUUNcUPDu.jpg',
-      notice: true
+      notice: true,
+      noticeRemind: true
     }
   }
 
@@ -113,6 +114,22 @@ class TraHome extends Component {
       notice: false
     })
   }
+  noticeRemind (ref) {
+    let noticeRemind = true
+    switch (ref) {
+      case 'noticeRemind01':
+        noticeRemind = true
+        break
+      case 'noticeRemind02':
+        noticeRemind = false
+        break
+      default:
+    }
+    this.setState({
+      notice: true,
+      noticeRemind: noticeRemind
+    })
+  }
 
   render () {
     const { traHome, cityData } = this.props
@@ -133,24 +150,39 @@ class TraHome extends Component {
     }
     return (
       <div className={s.traHomeContent}>
-        { !this.state.notice &&
-          <div className={s.noticeNarrow}>
-
-          </div>
-        }
-        { this.state.notice &&
-          <Link to='/notice' className={s.notice}>
-            <div className={s.contentText}>
-              <h1>公告</h1>
-              <p>鉴于近期个别互联网自媒体披露关于“深圳市住百家发展股份有限公司”（以下简称“住百家公司”）相关文章，其中涉及Travel平台及平台数字代币（TRA）的部分内容对Travel平台造成了不良影响。Travel平台特此声明如下：</p>
-              <p>“住百家公司”仅为Travel平台众多业务合作机构之一，并非相关文章所述“Travel平台为‘住百家公司’创立”。与Travel平台业务合作机构还包括Zat Go承云、云雀金服、维纳斯以及中国台湾台北、台南等地区民宿协会等。鉴于业务合作机构实际情况，Travel平台将谨慎评估与“住百家公司”的业务合作事宜。</p>
-              <p>对于网络中相关不实报道，Travel平台将保留追究法律责任的权利。</p>
-              <span>Travel</span>
-              <span>2018年6月13日</span>
-              <img src={close} onClick={() => this.notice()}></img>
+        <div className={s.noticeRemind}>
+          <a href='javascript:;' className={s.noticeRemind01} onClick={() => this.noticeRemind('noticeRemind01')}></a>
+          <a href='javascript:;' className={s.noticeRemind02} onClick={() => this.noticeRemind('noticeRemind02')}></a>
+          { this.state.notice && this.state.noticeRemind &&
+            <div className={s.notice}>
+              <div className={s.contentText}>
+                <h1>公告</h1>
+                <p>鉴于近期个别互联网自媒体披露关于“深圳市住百家发展股份有限公司”（以下简称“住百家公司”）相关文章，其中涉及Travel平台及平台数字代币（TRA）的部分内容对Travel平台造成了不良影响。Travel平台特此声明如下：</p>
+                <p>“住百家公司”仅为Travel平台众多业务合作机构之一，并非相关文章所述“Travel平台为‘住百家公司’创立”。与Travel平台业务合作机构还包括Zat Go承云、云雀金服、维纳斯以及中国台湾台北、台南等地区民宿协会等。鉴于业务合作机构实际情况，Travel平台将谨慎评估与“住百家公司”的业务合作事宜。</p>
+                <p>对于网络中相关不实报道，Travel平台将保留追究法律责任的权利。</p>
+                <span>Travel</span>
+                <span>2018年6月13日</span>
+                <img src={close} onClick={() => this.notice()}></img>
+                <Link to='/notice' className={s.noticeA}></Link>
+              </div>
             </div>
-          </Link>
-        }
+          }
+          { this.state.notice && !this.state.noticeRemind &&
+            <div className={s.notice}>
+              <div className={s.contentText}>
+                <h1>Travel项目最新进展</h1>
+                <p>为了让Travel旅行链（TRA）的各位支持者及时了解到项目进展，现将项目情况作以整理。近期，Travel在平台用户积累、平台积分系统搭建、平台激励模型建构等三方面有所突破，具体如下：</p>
+                <p>1. 平台用户积累拓展，包括旅行达人、商户、个人用户、企业用户等平台内容生产者的积极拓展，为平台优质内容产生做储备。</p>
+                <p>2. 初始行为激励模型构建，用于用户在平台内行为奖励，用户登陆、互动均可获得平台激励。</p>
+                <p>3. 平台积分体系搭建，为实现平台内用户行为产生、积分兑换、积分流通等效能搭建一套相对完善的平台积分体系。</p>
+                <span>Travel</span>
+                <span>2018年6月14日</span>
+                <img src={close} onClick={() => this.notice()}></img>
+                <Link to='/progress' className={s.noticeA}></Link>
+              </div>
+            </div>
+          }
+        </div>
         <SectionsContainer {...options}>
           <Section>
             <article>
